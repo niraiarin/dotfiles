@@ -1,0 +1,17 @@
+#!/usr/bin/expect
+
+set timeout 5
+
+spawn bash ./install_zinit.sh
+expect {
+    "y/n" {
+        send "y\n"
+        exp_continue
+    }
+}
+
+#expect {
+#    "\\\$" {
+#        exit 0
+#    }
+#}

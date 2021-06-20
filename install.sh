@@ -4,9 +4,7 @@
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
 
 ## install zinit
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
-source ~/.zshrc
-zinit self-update
-cat ./zshrc_add >> ~/.zshrc
-
-
+wget https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh -O ./install_zinit.sh && \
+	./zinit.exp && \
+	cat ./zshrc_add >> ~/.zshrc && \
+	rm ./install_zinit.sh
