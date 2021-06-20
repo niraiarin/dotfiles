@@ -1,0 +1,97 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
+
+### End of Zinit's installer chunk
+
+# zsh 警告を無視
+autoload -U compinit
+compinit -u
+
+# Load powerlevel10k theme
+zinit ice depth"1" # git clone depth
+zinit light romkatv/powerlevel10k
+
+# use plugins
+## Most themss use this option
+setopt promptsubst
+
+## Load oh-my-zsh library
+zinit wait lucid for \
+        OMZL::git.zsh \
+	PZT::modules/helper/init.zsh \
+  atload"unalias grv" \
+        OMZP::git
+
+PS1="READY >" # provide a simple prompt till the theme loads
+
+## Load theme
+# zinit wait'!' lucid for \
+#     OMZL::prompt_info_functions.zsh \
+#     OMZT::gnzh
+
+## Load Plugins
+zinit wait lucid for \
+  atinit"zicompinit; zicdreplay" \
+    zdharma/fast-syntax-highlighting \
+    OMZP::colored-man-pages \
+  as"completion" \
+    zsh-users/zsh-autosuggestions \
+    OMZP::docker/_docker \
+    OMZP::docker-compose \
+    OMZP::rust/_rust \
+    OMZP::rustup/_rustup \
+    OMZP::cargo/_cargo \
+  as"search" \
+    zdharma/history-search-multi-word \
+  as"others" \
+    paulirish/git-open \
+    gimbo/iterm2-tabs.zsh
+
+## Made by Rust plugins
+# ripgrep
+zinit ice as"program" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
+zinit light BurntSushi/ripgrep
+
+# exa
+zinit ice as"program" from"gh-r" mv"exa* -> exa"
+zinit light ogham/exa
+
+# bat
+zinit ice as"program" from"gh-r" mv"bat* -> bat" pick"bat/bat"
+zinit light sharkdp/bat
+
+# fd
+zinit ice as"program" from"gh-r" mv"fd* -> fd" pick"fd/fd"
+zinit light sharkdp/fd
+
+# alias設定は適宜
+# alias ls='exa'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
