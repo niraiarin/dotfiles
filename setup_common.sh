@@ -15,9 +15,9 @@ then
 fi
 
 ## user config
-username="nirarin"
-shell="/bin/zsh"
-password="nirarin"
+username=$ADDUSERNAME
+shell=$ADDUSERSHELL
+password=$ADDUSERPASS
 
 useradd -m -G wheel -s "$shell" "$username" &&\
 	echo "$username:$password" | chpasswd
