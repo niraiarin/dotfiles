@@ -2,7 +2,7 @@
 
 # install requirements
 osname=$(cat /etc/issue)
-requirements="./commmon_requirements.txt"
+requirements="./requirements_common.txt"
 if [[ $osname =~ "Debian" ]] ;
 then
   apt update && apt install "$requirements"
@@ -14,7 +14,7 @@ fi
 
 ## user config
 username="nirarin"
-shell="/bin/bash"
+shell="/bin/zsh"
 password="nirarin"
 
 useradd -m -G wheel -s "$shell" "$username" &&\
@@ -22,10 +22,7 @@ useradd -m -G wheel -s "$shell" "$username" &&\
 echo "${username} ALL=(ALL) ALL" >> /etc/sudoers
 
 ## change user
-su "$username"
-
-## change default shell
-chsh -s /bin/zsh
+su "$username" << EOF
 
 ## install dein
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
@@ -44,3 +41,5 @@ ln -sf ~/dotfiles/.vimrc ~/.vimrc
 
 ### install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+EOF
