@@ -22,6 +22,7 @@ password="nirarin"
 
 useradd -m -G wheel -s "$shell" "$username" &&\
 	echo "$username:$password" | chpasswd
+echo "${username} ALL=(ALL) ALL" >> /etc/sudoers
 
 ## change user
 su "$username"
@@ -42,4 +43,4 @@ ln -sf ~/dotfiles/.vimrc ~/.vimrc
 	rm ./install_zinit.sh
 
 ### install rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | s
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
