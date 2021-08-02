@@ -28,6 +28,7 @@ echo "${username} ALL=(ALL) ALL" >> /etc/sudoers
 
 ## change user
 su "$username" << EOF
+pwd
 
 ## install dein
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
