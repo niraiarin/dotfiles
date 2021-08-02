@@ -9,7 +9,7 @@ then
   apt update && apt install "$requirements"
 elif [[ $osname =~ "Arch Linux" ]] ; 
 then
-  pacman -Syy &&\
+  pacman -Syu --nonconfirm &&\
   	pacman -S --noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort $requirements)) &&\
   	pacman -S --noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort $requirements_arch))
 fi
