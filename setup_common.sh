@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# record
-script
-
 # install requirements
 osname=$(cat /etc/issue)
 requirements="./commmon_requirements.txt"
@@ -17,7 +14,7 @@ fi
 
 ## user config
 username="nirarin"
-shell="/bin/zsh"
+shell="/bin/bash"
 password="nirarin"
 
 useradd -m -G wheel -s "$shell" "$username" &&\
@@ -28,7 +25,7 @@ echo "${username} ALL=(ALL) ALL" >> /etc/sudoers
 su "$username"
 
 ## change default shell
-chsh -s /bin/bash
+chsh -s /bin/zsh
 
 ## install dein
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
