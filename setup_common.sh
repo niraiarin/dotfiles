@@ -9,7 +9,7 @@ then
 elif [[ $osname =~ "Arch Linux" ]] ; 
 then
   pacman -Syy &&\
-  	pacman -S -noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort $requirements)) 
+  	pacman -S --noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort $requirements)) 
 fi
 
 ## user config
