@@ -1,15 +1,30 @@
 #!/bin/sh
 
+# record
+script
+
 # install requirements
 osname=$(cat /etc/issue)
-requirements="git expect"
+requirements="./commmon_requirements.txt"
 if [[ $osname =~ "Debian" ]] ;
 then
   apt update && apt install "$requirements"
 elif [[ $osname =~ "Arch Linux" ]] ; 
 then
-  pacman -Syy && pacman -S "$requirements" --noconfirm
+  pacman -Syy &&\
+  	pacman -S -noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort $requirements)) 
 fi
+
+## user config
+username="nirarin"
+shell="/bin/zsh"
+password="nirarin"
+
+useradd -m -G wheel -s "$shell" "$username" &&\
+	echo "$username:$password" | chpasswd
+
+## change user
+su "$username"
 
 ## install dein
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
@@ -25,3 +40,6 @@ ln -sf ~/dotfiles/.vimrc ~/.vimrc
 	./zinit.exp && \
 	cat ./zshrc_add >> ~/.zshrc && \
 	rm ./install_zinit.sh
+
+### install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | s
