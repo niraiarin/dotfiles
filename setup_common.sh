@@ -19,6 +19,9 @@ username=$ADDUSERNAME
 shell=$ADDUSERSHELL
 password=$ADDUSERPASS
 
+echo "username:${username}"
+echo "shell:${shell}"
+
 useradd -m -G wheel -s "$shell" "$username" &&\
 	echo "$username:$password" | chpasswd
 echo "${username} ALL=(ALL) ALL" >> /etc/sudoers
