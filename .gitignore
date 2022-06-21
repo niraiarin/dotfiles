@@ -3,4 +3,4 @@
 !.config/fish
 .zsh/history/
 .config/antidote/state.json
-.tmux/*
+#.tmux/*
