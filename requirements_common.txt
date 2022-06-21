@@ -1,8 +1,0 @@
-sudo
-git
-zsh
-wget
-expect
-curl
-vim
-diffutils

@@ -45,9 +45,9 @@
     default = matching
 
 [user]
-    name = b4b4r07
-    email = b4b4r07@gmail.com
-    signingkey = D6CF1A347277485E
+    name = niraiarin
+    email = niraiarin@gmail.com
+    signingkey = 57B52129FE87ACCF
 
 [pager]
     log  = diff-highlight | less -RX
