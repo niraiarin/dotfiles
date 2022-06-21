@@ -1,0 +1,178 @@
+github:
+- name: b4b4r07/enhancd
+  description: A next-generation cd command with your interactive filter
+  owner: b4b4r07
+  repo: enhancd
+  plugin:
+    env:
+      ENHANCD_FILTER: fzf --height 25% --reverse --ansi:fzy
+    sources:
+    - init.sh
+# - name: jhawthorn/fzy
+#   description: A better fuzzy finder
+#   owner: jhawthorn
+#   repo: fzy
+#   command:
+#     build:
+#       steps:
+#       - make
+#       - sudo make install
+- name: ahmetb/kubectx
+  description: Switch faster between clusters and namespaces in kubectl
+  owner: ahmetb
+  repo: kubectx
+  command:
+    link:
+    - from: kubectx
+      to: kubectl-ctx
+    - from: kubens
+      to: kubectl-ns
+- name: johanhaleby/kubetail
+  description: Bash script to tail Kubernetes logs from multiple pods at the same time
+  owner: johanhaleby
+  repo: kubetail
+  command:
+    link:
+    - from: kubetail
+- name: zdharma-continuum/history-search-multi-word
+  description: Multi-word, syntax highlighted history searching for Zsh
+  owner: zdharma-continuum
+  repo: history-search-multi-word
+  plugin:
+    sources:
+    - history-search-multi-word.plugin.zsh
+- name: mutantcornholio/prok
+  description: easy process grep with ps output
+  owner: mutantcornholio
+  repo: prok
+  command:
+    link:
+    - from: prok.sh
+      to: prok
+- name: b4b4r07/zsh-vimode-visual
+  description: Implement the vim-like visual mode to vi-mode of zsh
+  owner: b4b4r07
+  repo: zsh-vimode-visual
+  plugin:
+    sources:
+    - zsh-vimode-visual.zsh
+- name: daveewart/colordiff
+  description: Primary development for colordiff
+  owner: daveewart
+  repo: colordiff
+  command:
+    alias:
+      diff: colordiff -u
+    link:
+    - from: colordiff.pl
+      to: colordiff
+- name: so-fancy/diff-so-fancy
+  description: Good-lookin' diffs. Actually… nah… The best-lookin' diffs.
+  owner: so-fancy
+  repo: diff-so-fancy
+  command:
+    link:
+    - from: diff-so-fancy
+- name: tmux-plugins/tpm
+  description: Tmux Plugin Manager
+  owner: tmux-plugins
+  repo: tpm
+  command:
+    link:
+    - from: .
+      to: $HOME/.tmux/plugins/tpm
+- name: antonmedv/red
+  description: Terminal log analysis tools
+  owner: antonmedv
+  repo: red
+  command:
+    build:
+      steps:
+      - go build -o red
+    link:
+    - from: red
+- name: iovisor/kubectl-trace
+  description: Schedule bpftrace programs on your kubernetes cluster using the kubectl
+  owner: iovisor
+  repo: kubectl-trace
+  command:
+    build:
+      steps:
+      - go build -o kubectl-trace cmd/kubectl-trace/root.go
+    link:
+    - from: kubectl-trace
+      to: kubectl-trace
+- name: motemen/gobump
+  description: Bumps up Go program version
+  owner: motemen
+  repo: gobump
+  command:
+    build:
+      steps:
+      - go build -o gobump cmd/gobump/main.go
+    link:
+    - from: gobump
+      to: gobump
+- name: paulirish/git-open
+  description: Type `git open` to open the GitHub page or website for a repository in your browser.
+  owner: paulirish
+  repo: git-open
+  command:
+    link:
+    - from: git-open
+      to: git-open
+- name: zdharma-continuum/fast-syntax-highlighting # Similar to zsh-users/zsh-syntax-highlighting
+  description: Syntax-highlighting for Zshell
+  owner: zdharma-continuum
+  repo: fast-syntax-highlighting
+  plugin:
+    sources:
+    - fast-syntax-highlighting.plugin.zsh
+- name: philovivero/distribution
+  description: New Canonical Project for this is wizzat / distribution
+  owner: philovivero
+  repo: distribution
+  branch: master
+  command:
+    link:
+    - from: distribution.py
+      to: distribution
+- name: b4b4r07/zsh-prompt-minimal
+  description: Super super super minimal prompt for zsh
+  owner: b4b4r07
+  repo: zsh-prompt-minimal
+  plugin:
+    env:
+      PROMPT_PATH_STYLE: minimal
+      PROMPT_USE_VIM_MODE: true
+    sources:
+    - '*.zsh-theme'
+- name: icyphox/shlide
+  description: a slide deck presentation tool written in pure bash
+  owner: icyphox
+  repo: shlide
+  command:
+    link:
+    - from: shlide
+      to: shlide
+# - name: hchbaw/auto-fu.zsh
+#   description: |
+#     zsh automatic complete-word and list-choices.
+#     Originally incr-0.2.zsh by y.fujii
+#   owner: hchbaw
+#   repo: auto-fu.zsh
+#   plugin:
+#     sources:
+#     - auto-fu.zsh
+
+- name: olets/zsh-abbr
+  description: |
+    The zsh manager for auto-expanding abbreviations,
+    inspired by fish shell.
+  owner: olets
+  repo: zsh-abbr
+  plugin:
+    sources:
+    - zsh-abbr.zsh
+    snippet: |
+      abbr --quiet tf=terraform
